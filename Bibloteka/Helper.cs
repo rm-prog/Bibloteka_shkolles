@@ -31,6 +31,7 @@ namespace Bibloteka
                 books_grid.Rows[i].Cells[2].Value = librat[i].Autori;
                 books_grid.Rows[i].Cells[3].Value = librat[i].Faqe;
                 books_grid.Rows[i].Cells[4].Value = librat[i].Zhaneri;
+                books_grid.Rows[i].Cells[5].Value = librat[i].Data_dorezimit.ToShortDateString();
             }
 
         }

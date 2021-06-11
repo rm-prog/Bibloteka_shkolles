@@ -43,11 +43,6 @@ namespace Bibloteka
             this.btnReserve = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.librat_grid = new System.Windows.Forms.DataGridView();
-            this.ID_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TITULLI_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AUTORI_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FAQE_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ZHANERI_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lista_group = new System.Windows.Forms.GroupBox();
             this.adv_search_button = new System.Windows.Forms.Button();
             this.zhaneri_input = new System.Windows.Forms.ComboBox();
@@ -56,6 +51,12 @@ namespace Bibloteka
             this.label5 = new System.Windows.Forms.Label();
             this.autori_input = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.ID_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TITULLI_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AUTORI_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FAQE_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ZHANERI_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Data_dorezimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -211,52 +212,14 @@ namespace Bibloteka
             this.TITULLI_COLUMN,
             this.AUTORI_COLUMN,
             this.FAQE_COLUMN,
-            this.ZHANERI_COLUMN});
-            this.librat_grid.Location = new System.Drawing.Point(57, 50);
+            this.ZHANERI_COLUMN,
+            this.Data_dorezimit});
+            this.librat_grid.Location = new System.Drawing.Point(39, 50);
             this.librat_grid.Name = "librat_grid";
             this.librat_grid.ReadOnly = true;
             this.librat_grid.RowHeadersVisible = false;
-            this.librat_grid.Size = new System.Drawing.Size(465, 321);
+            this.librat_grid.Size = new System.Drawing.Size(595, 321);
             this.librat_grid.TabIndex = 5;
-            // 
-            // ID_COLUMN
-            // 
-            this.ID_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ID_COLUMN.HeaderText = "ID";
-            this.ID_COLUMN.Name = "ID_COLUMN";
-            this.ID_COLUMN.ReadOnly = true;
-            this.ID_COLUMN.Width = 25;
-            // 
-            // TITULLI_COLUMN
-            // 
-            this.TITULLI_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TITULLI_COLUMN.HeaderText = "Titulli";
-            this.TITULLI_COLUMN.Name = "TITULLI_COLUMN";
-            this.TITULLI_COLUMN.ReadOnly = true;
-            this.TITULLI_COLUMN.Width = 140;
-            // 
-            // AUTORI_COLUMN
-            // 
-            this.AUTORI_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.AUTORI_COLUMN.HeaderText = "Autori";
-            this.AUTORI_COLUMN.Name = "AUTORI_COLUMN";
-            this.AUTORI_COLUMN.ReadOnly = true;
-            this.AUTORI_COLUMN.Width = 130;
-            // 
-            // FAQE_COLUMN
-            // 
-            this.FAQE_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.FAQE_COLUMN.HeaderText = "Faqe";
-            this.FAQE_COLUMN.Name = "FAQE_COLUMN";
-            this.FAQE_COLUMN.ReadOnly = true;
-            this.FAQE_COLUMN.Width = 66;
-            // 
-            // ZHANERI_COLUMN
-            // 
-            this.ZHANERI_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ZHANERI_COLUMN.HeaderText = "Zhaneri";
-            this.ZHANERI_COLUMN.Name = "ZHANERI_COLUMN";
-            this.ZHANERI_COLUMN.ReadOnly = true;
             // 
             // lista_group
             // 
@@ -271,7 +234,7 @@ namespace Bibloteka
             this.lista_group.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lista_group.Location = new System.Drawing.Point(221, 206);
             this.lista_group.Name = "lista_group";
-            this.lista_group.Size = new System.Drawing.Size(642, 377);
+            this.lista_group.Size = new System.Drawing.Size(808, 377);
             this.lista_group.TabIndex = 6;
             this.lista_group.TabStop = false;
             this.lista_group.Text = "Librat";
@@ -369,6 +332,52 @@ namespace Bibloteka
             this.label4.TabIndex = 6;
             this.label4.Text = "Autori";
             // 
+            // ID_COLUMN
+            // 
+            this.ID_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ID_COLUMN.HeaderText = "ID";
+            this.ID_COLUMN.Name = "ID_COLUMN";
+            this.ID_COLUMN.ReadOnly = true;
+            this.ID_COLUMN.Width = 25;
+            // 
+            // TITULLI_COLUMN
+            // 
+            this.TITULLI_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TITULLI_COLUMN.HeaderText = "Titulli";
+            this.TITULLI_COLUMN.Name = "TITULLI_COLUMN";
+            this.TITULLI_COLUMN.ReadOnly = true;
+            this.TITULLI_COLUMN.Width = 140;
+            // 
+            // AUTORI_COLUMN
+            // 
+            this.AUTORI_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.AUTORI_COLUMN.HeaderText = "Autori";
+            this.AUTORI_COLUMN.Name = "AUTORI_COLUMN";
+            this.AUTORI_COLUMN.ReadOnly = true;
+            this.AUTORI_COLUMN.Width = 130;
+            // 
+            // FAQE_COLUMN
+            // 
+            this.FAQE_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.FAQE_COLUMN.HeaderText = "Faqe";
+            this.FAQE_COLUMN.Name = "FAQE_COLUMN";
+            this.FAQE_COLUMN.ReadOnly = true;
+            this.FAQE_COLUMN.Width = 66;
+            // 
+            // ZHANERI_COLUMN
+            // 
+            this.ZHANERI_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ZHANERI_COLUMN.HeaderText = "Zhaneri";
+            this.ZHANERI_COLUMN.Name = "ZHANERI_COLUMN";
+            this.ZHANERI_COLUMN.ReadOnly = true;
+            // 
+            // Data_dorezimit
+            // 
+            this.Data_dorezimit.HeaderText = "Data e dorezimit";
+            this.Data_dorezimit.Name = "Data_dorezimit";
+            this.Data_dorezimit.ReadOnly = true;
+            this.Data_dorezimit.Width = 125;
+            // 
             // Bibloteka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -410,11 +419,6 @@ namespace Bibloteka
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.DataGridView librat_grid;
         private System.Windows.Forms.GroupBox lista_group;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID_COLUMN;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TITULLI_COLUMN;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AUTORI_COLUMN;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FAQE_COLUMN;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ZHANERI_COLUMN;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox autori_input;
         private System.Windows.Forms.NumericUpDown nrFaqe;
@@ -424,6 +428,12 @@ namespace Bibloteka
         private System.Windows.Forms.Button adv_search_button;
         private System.Windows.Forms.Label hello_label;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_COLUMN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TITULLI_COLUMN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AUTORI_COLUMN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FAQE_COLUMN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ZHANERI_COLUMN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Data_dorezimit;
     }
 }
 

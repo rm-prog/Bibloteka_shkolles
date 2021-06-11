@@ -45,6 +45,10 @@ namespace Bibloteka
 
             lista_group.Visible = true;
 
+            librat_grid.Columns[5].Visible = false;
+            // Original width -> 595
+            librat_grid.Width = 470;
+
             // Fill librat_grid datagridview with records from librat <list>
             // librat <list> gets records from LIBRAT table through sql connection in db DataAccess object
             Helper.FillDataGrid(librat, librat_grid);

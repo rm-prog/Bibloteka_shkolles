@@ -46,8 +46,8 @@ namespace Bibloteka
             lista_group.Visible = true;
 
             librat_grid.Columns[5].Visible = false;
-            // Original width -> 595
-            librat_grid.Width = 470;
+
+            rezervo_groupBox.Visible = false;
 
             // Fill librat_grid datagridview with records from librat <list>
             // librat <list> gets records from LIBRAT table through sql connection in db DataAccess object
@@ -105,10 +105,29 @@ namespace Bibloteka
             {
                 MessageBox.Show("Duhet te kyçeni per te rezervuar libra");
             } 
+            else if (Perdoruesi.LiberGjendjeID != 20000)
+            {
+                MessageBox.Show("Nuk mund te rezervoni nje liber, pa dorezuar librin qe keni");
+            }
+            else if (Perdoruesi.LiberRezervuarID != 20000)
+            {
+                MessageBox.Show("Nuk mund te rezervoni me shume se nje liber");
+            }
             else
             {
-                // Should open the table with librat with all columns
-                throw new NotImplementedException();
+                DataAccess db = new DataAccess();
+
+                librat = db.GetAllLibra();
+
+                lista_group.Visible = true;
+
+                // Make visible column that shows Data e dorezimit te librit
+                librat_grid.Columns[5].Visible = true;
+
+                rezervo_groupBox.Visible = true;
+                // Fill librat_grid datagridview with records from librat <list>
+                // librat <list> gets records from LIBRAT table through sql connection in db DataAccess object
+                Helper.FillDataGrid(librat, librat_grid);
             }
 
         }
@@ -127,6 +146,51 @@ namespace Bibloteka
                 btnLogin.Visible = false;
                 btnRegister.Enabled = false;
                 btnRegister.Visible = false;
+            }
+        }
+
+        private void hello_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rezervo_librinBtn_Click(object sender, EventArgs e)
+        {
+            DataAccess db = new DataAccess();
+
+            int liberID = Convert.ToInt32(ID_rezervo.Value);
+
+            librat = db.GetLiberByID(liberID);
+
+            if (librat.Count < 1)
+            {
+                MessageBox.Show("Nuk ka liber my kete ID");
+            } 
+            else if (librat[0].Data_dorezimit == Convert.ToDateTime("2020-01-01"))
+            {
+                // Should inform user that he can take the book now
+                // Should change the users data
+                // Set the ID of the book he has ( Column LiberGjendjeID )
+                // Set the ID of the user that has the book ( In table LIBRAT Column Lexuesi_ID )
+                // Set the due date of the book ( In table LIBRAT Column Data_dorezimit )
+                // Change users data in Perdoruesi Static Class
+
+                db.UpdateLexuesGjendjeId(Perdoruesi.ID, liberID);
+                db.UpdateLibratLexuesiID_Data(liberID, Perdoruesi.ID);
+
+                Perdoruesi.LiberGjendjeID = librat[0].ID;
+
+                MessageBox.Show("Duhet te dorezoni librin mbas 21 ditesh");
+            } 
+            else
+            {
+                // Check if there is anyone who has reserved this book
+                // If yes than user cant reserve it
+                // If noone than reserve it
+                // Change users data
+                // Set the ID of the book reserved ( Column LiberRezervuarID )
+                // Change users data in Perdoruesi Static Class
+                throw new NotImplementedException();
             }
         }
     }

@@ -14,5 +14,7 @@ namespace Bibloteka
         public string Mbiemri { get; set; }
         public string Uname { get; set; }
         public string Pword { get; set; }
+        public int LiberRezervuarID { get; set; }
+        public int LiberGjendjeID { get; set; }
     }
 }

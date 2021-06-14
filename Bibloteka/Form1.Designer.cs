@@ -43,6 +43,12 @@ namespace Bibloteka
             this.btnReserve = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.librat_grid = new System.Windows.Forms.DataGridView();
+            this.ID_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TITULLI_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AUTORI_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FAQE_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ZHANERI_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Data_dorezimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lista_group = new System.Windows.Forms.GroupBox();
             this.adv_search_button = new System.Windows.Forms.Button();
             this.zhaneri_input = new System.Windows.Forms.ComboBox();
@@ -51,18 +57,18 @@ namespace Bibloteka
             this.label5 = new System.Windows.Forms.Label();
             this.autori_input = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.ID_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TITULLI_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AUTORI_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FAQE_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ZHANERI_COLUMN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Data_dorezimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_rezervo = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.rezervo_groupBox = new System.Windows.Forms.GroupBox();
+            this.rezervo_librinBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.librat_grid)).BeginInit();
             this.lista_group.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nrFaqe)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ID_rezervo)).BeginInit();
+            this.rezervo_groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -77,7 +83,7 @@ namespace Bibloteka
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1041, 70);
+            this.panel1.Size = new System.Drawing.Size(1063, 70);
             this.panel1.TabIndex = 0;
             // 
             // pictureBox1
@@ -94,11 +100,13 @@ namespace Bibloteka
             // hello_label
             // 
             this.hello_label.AutoSize = true;
-            this.hello_label.Location = new System.Drawing.Point(834, 23);
+            this.hello_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hello_label.Location = new System.Drawing.Point(821, 12);
             this.hello_label.Name = "hello_label";
-            this.hello_label.Size = new System.Drawing.Size(69, 13);
+            this.hello_label.Size = new System.Drawing.Size(122, 24);
             this.hello_label.TabIndex = 5;
             this.hello_label.Text = "Pershendetje";
+            this.hello_label.Click += new System.EventHandler(this.hello_label_Click);
             // 
             // btnRegister
             // 
@@ -214,12 +222,58 @@ namespace Bibloteka
             this.FAQE_COLUMN,
             this.ZHANERI_COLUMN,
             this.Data_dorezimit});
-            this.librat_grid.Location = new System.Drawing.Point(39, 50);
+            this.librat_grid.Location = new System.Drawing.Point(29, 49);
             this.librat_grid.Name = "librat_grid";
             this.librat_grid.ReadOnly = true;
             this.librat_grid.RowHeadersVisible = false;
             this.librat_grid.Size = new System.Drawing.Size(595, 321);
             this.librat_grid.TabIndex = 5;
+            // 
+            // ID_COLUMN
+            // 
+            this.ID_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ID_COLUMN.HeaderText = "ID";
+            this.ID_COLUMN.Name = "ID_COLUMN";
+            this.ID_COLUMN.ReadOnly = true;
+            this.ID_COLUMN.Width = 25;
+            // 
+            // TITULLI_COLUMN
+            // 
+            this.TITULLI_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.TITULLI_COLUMN.HeaderText = "Titulli";
+            this.TITULLI_COLUMN.Name = "TITULLI_COLUMN";
+            this.TITULLI_COLUMN.ReadOnly = true;
+            this.TITULLI_COLUMN.Width = 140;
+            // 
+            // AUTORI_COLUMN
+            // 
+            this.AUTORI_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.AUTORI_COLUMN.HeaderText = "Autori";
+            this.AUTORI_COLUMN.Name = "AUTORI_COLUMN";
+            this.AUTORI_COLUMN.ReadOnly = true;
+            this.AUTORI_COLUMN.Width = 130;
+            // 
+            // FAQE_COLUMN
+            // 
+            this.FAQE_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.FAQE_COLUMN.HeaderText = "Faqe";
+            this.FAQE_COLUMN.Name = "FAQE_COLUMN";
+            this.FAQE_COLUMN.ReadOnly = true;
+            this.FAQE_COLUMN.Width = 66;
+            // 
+            // ZHANERI_COLUMN
+            // 
+            this.ZHANERI_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ZHANERI_COLUMN.HeaderText = "Zhaneri";
+            this.ZHANERI_COLUMN.Name = "ZHANERI_COLUMN";
+            this.ZHANERI_COLUMN.ReadOnly = true;
+            // 
+            // Data_dorezimit
+            // 
+            this.Data_dorezimit.HeaderText = "Data e dorezimit";
+            this.Data_dorezimit.Name = "Data_dorezimit";
+            this.Data_dorezimit.ReadOnly = true;
+            this.Data_dorezimit.Width = 125;
             // 
             // lista_group
             // 
@@ -232,9 +286,9 @@ namespace Bibloteka
             this.lista_group.Controls.Add(this.label4);
             this.lista_group.Controls.Add(this.librat_grid);
             this.lista_group.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lista_group.Location = new System.Drawing.Point(221, 206);
+            this.lista_group.Location = new System.Drawing.Point(204, 206);
             this.lista_group.Name = "lista_group";
-            this.lista_group.Size = new System.Drawing.Size(808, 377);
+            this.lista_group.Size = new System.Drawing.Size(642, 377);
             this.lista_group.TabIndex = 6;
             this.lista_group.TabStop = false;
             this.lista_group.Text = "Librat";
@@ -332,58 +386,73 @@ namespace Bibloteka
             this.label4.TabIndex = 6;
             this.label4.Text = "Autori";
             // 
-            // ID_COLUMN
+            // ID_rezervo
             // 
-            this.ID_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ID_COLUMN.HeaderText = "ID";
-            this.ID_COLUMN.Name = "ID_COLUMN";
-            this.ID_COLUMN.ReadOnly = true;
-            this.ID_COLUMN.Width = 25;
+            this.ID_rezervo.Location = new System.Drawing.Point(38, 94);
+            this.ID_rezervo.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.ID_rezervo.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.ID_rezervo.Name = "ID_rezervo";
+            this.ID_rezervo.Size = new System.Drawing.Size(86, 24);
+            this.ID_rezervo.TabIndex = 12;
+            this.ID_rezervo.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // TITULLI_COLUMN
+            // label7
             // 
-            this.TITULLI_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.TITULLI_COLUMN.HeaderText = "Titulli";
-            this.TITULLI_COLUMN.Name = "TITULLI_COLUMN";
-            this.TITULLI_COLUMN.ReadOnly = true;
-            this.TITULLI_COLUMN.Width = 140;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Constantia", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(6, 56);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(159, 18);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "ID e Librit qe deshironi";
             // 
-            // AUTORI_COLUMN
+            // rezervo_groupBox
             // 
-            this.AUTORI_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.AUTORI_COLUMN.HeaderText = "Autori";
-            this.AUTORI_COLUMN.Name = "AUTORI_COLUMN";
-            this.AUTORI_COLUMN.ReadOnly = true;
-            this.AUTORI_COLUMN.Width = 130;
+            this.rezervo_groupBox.Controls.Add(this.rezervo_librinBtn);
+            this.rezervo_groupBox.Controls.Add(this.label7);
+            this.rezervo_groupBox.Controls.Add(this.ID_rezervo);
+            this.rezervo_groupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rezervo_groupBox.Location = new System.Drawing.Point(860, 290);
+            this.rezervo_groupBox.Name = "rezervo_groupBox";
+            this.rezervo_groupBox.Size = new System.Drawing.Size(169, 252);
+            this.rezervo_groupBox.TabIndex = 14;
+            this.rezervo_groupBox.TabStop = false;
+            this.rezervo_groupBox.Text = "Rezervimi i Librit";
+            this.rezervo_groupBox.Visible = false;
             // 
-            // FAQE_COLUMN
+            // rezervo_librinBtn
             // 
-            this.FAQE_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.FAQE_COLUMN.HeaderText = "Faqe";
-            this.FAQE_COLUMN.Name = "FAQE_COLUMN";
-            this.FAQE_COLUMN.ReadOnly = true;
-            this.FAQE_COLUMN.Width = 66;
-            // 
-            // ZHANERI_COLUMN
-            // 
-            this.ZHANERI_COLUMN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ZHANERI_COLUMN.HeaderText = "Zhaneri";
-            this.ZHANERI_COLUMN.Name = "ZHANERI_COLUMN";
-            this.ZHANERI_COLUMN.ReadOnly = true;
-            // 
-            // Data_dorezimit
-            // 
-            this.Data_dorezimit.HeaderText = "Data e dorezimit";
-            this.Data_dorezimit.Name = "Data_dorezimit";
-            this.Data_dorezimit.ReadOnly = true;
-            this.Data_dorezimit.Width = 125;
+            this.rezervo_librinBtn.BackColor = System.Drawing.Color.MidnightBlue;
+            this.rezervo_librinBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rezervo_librinBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rezervo_librinBtn.ForeColor = System.Drawing.Color.White;
+            this.rezervo_librinBtn.Location = new System.Drawing.Point(38, 155);
+            this.rezervo_librinBtn.Name = "rezervo_librinBtn";
+            this.rezervo_librinBtn.Size = new System.Drawing.Size(98, 59);
+            this.rezervo_librinBtn.TabIndex = 14;
+            this.rezervo_librinBtn.Text = "Rezervo";
+            this.rezervo_librinBtn.UseVisualStyleBackColor = false;
+            this.rezervo_librinBtn.Click += new System.EventHandler(this.rezervo_librinBtn_Click);
             // 
             // Bibloteka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkCyan;
-            this.ClientSize = new System.Drawing.Size(1041, 595);
+            this.ClientSize = new System.Drawing.Size(1063, 634);
+            this.Controls.Add(this.rezervo_groupBox);
             this.Controls.Add(this.lista_group);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnReserve);
@@ -401,6 +470,9 @@ namespace Bibloteka
             this.lista_group.ResumeLayout(false);
             this.lista_group.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nrFaqe)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ID_rezervo)).EndInit();
+            this.rezervo_groupBox.ResumeLayout(false);
+            this.rezervo_groupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -434,6 +506,10 @@ namespace Bibloteka
         private System.Windows.Forms.DataGridViewTextBoxColumn FAQE_COLUMN;
         private System.Windows.Forms.DataGridViewTextBoxColumn ZHANERI_COLUMN;
         private System.Windows.Forms.DataGridViewTextBoxColumn Data_dorezimit;
+        private System.Windows.Forms.NumericUpDown ID_rezervo;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox rezervo_groupBox;
+        private System.Windows.Forms.Button rezervo_librinBtn;
     }
 }
 

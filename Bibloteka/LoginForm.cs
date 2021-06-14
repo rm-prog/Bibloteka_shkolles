@@ -48,6 +48,8 @@ namespace Bibloteka
                 Perdoruesi.FirstName = lexues[0].Emri;
                 Perdoruesi.LastName = lexues[0].Mbiemri;
                 Perdoruesi.Uname = lexues[0].Uname;
+                Perdoruesi.LiberRezervuarID = lexues[0].LiberRezervuarID;
+                Perdoruesi.LiberGjendjeID = lexues[0].LiberGjendjeID;
                 Perdoruesi.LoggedIn = true;
 
                 Close();

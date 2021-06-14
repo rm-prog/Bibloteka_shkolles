@@ -20,6 +20,9 @@ namespace Bibloteka
             }
         }
 
+
+        // /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // <!------------------------   Selects LIBRAT by parameters : @autori, @faqe, @zhaneri -----------------------!>
         public List<Liber> GetLibraByAutoriFaqeZhaneri(string autori, int faqe, string zhaneri)
         {
             // Create connection with DB using connection string, get connection string with helper class
@@ -32,6 +35,9 @@ namespace Bibloteka
             }
         }
 
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // <!--------------------    Selects LIBRAT by parameters : @autori, @faqe  --------------------------!>
         public List<Liber> GetLibraByAutoriFaqe(string autori, int faqe)
         {
             // Create connection with DB using connection string, get connection string with helper class
@@ -44,6 +50,9 @@ namespace Bibloteka
             }
         }
 
+
+        // ////////////////////////////////////////////////////////////////////////////////////////////////
+        // <!------------------- Selects LIBRAT by parameters : @faqe, @zhaneri -------------------------->
         public List<Liber> GetLibraByFaqeZhaneri(int faqe, string zhaneri)
         {
             // Create connection with DB using connection string, get connection string with helper class
@@ -56,6 +65,9 @@ namespace Bibloteka
             }
         }
 
+
+        // ////////////////////////////////////////////////////////////////////////////////////////////////
+        // <!------------------ Selects LIBRAT by parameters : @faqe   --------------------------------->
         public List<Liber> GetLibraByFaqe(int faqe)
         {
             // Create connection with DB using connection string, get connection string with helper class
@@ -68,6 +80,54 @@ namespace Bibloteka
             }
         }
 
+
+        // ///////////////////////////////////////////////////////////////////////////////////////////////
+        // <!------------------ Selects LIBRAT by parameters : @ID -------------------------------------->
+        public List<Liber> GetLiberByID(int ID)
+        {
+            // Create connection with DB using connection string, get connection string with helper class
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("BIBLOTEKA_DB")))
+            {
+                // Get book with ID
+                // Pass the Parameter ID
+                return connection.Query<Liber>("dbo.GET_LIBER_BY_ID @ID",
+                new { ID = ID }).ToList();
+            }
+        }
+        
+
+        // /////////////////////////////////////////////////////////////////////////////////////////////
+        // <!------------ Update LIBRAT, SETS LexuesiID = @lexuesiID and DataDorezimit = data ----------------->
+        public void UpdateLibratLexuesiID_Data (int liberID, int lexuesiID)
+        {
+            DateTime today = DateTime.Now;
+            DateTime dataDorezimit = today.AddDays(21);
+            // Create connection with DB using connection string, get connection string with helper class
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("BIBLOTEKA_DB")))
+            {
+                connection.Execute("dbo.SET_LIBRAT_LEXUESI_DATE @ID, @LexuesiID, @DataDorezimit",
+                new { ID = liberID, LexuesiID = lexuesiID, DataDorezimit = dataDorezimit.ToShortDateString() });
+            }
+        }
+
+
+        // /////////////////////////////////////////////////////////////////////////////////////////////
+        // <!-------------------- Updates LEXUESIT, SETS LiberGjendjeId = @gjendjeID ------------------------------->
+        public void UpdateLexuesGjendjeId(int ID, int gjendjeId)
+        {
+            // Create connection with DB using connection string, get connection string with helper class
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("BIBLOTEKA_DB")))
+            {
+                // Set column LiberGjendjeID = @gjendjeId
+                // Pass Parameters ID, LiberGjendjeID
+                connection.Execute("dbo.SET_LEXUESI_GJENDJE_ID @ID, @LiberGjendjeId",
+                new { ID = ID, LiberGjendjeID = gjendjeId });
+            }
+        }
+
+
+        // //////////////////////////////////////////////////////////////////////////////////////////////
+        // <!------------------ Selects LEXUESIT by paramets : @uname ---------------------------------->
         public List<Lexues> GetLexuesByUname(string uname)
         {
             // Create connection with DB using connection string, get connection string with helper class
@@ -81,6 +141,9 @@ namespace Bibloteka
             }
         }
 
+
+        // ///////////////////////////////////////////////////////////////////////////////////////////
+        // <!------------------------------- Add new user to LEXUESIT ---------------------------------->
         public void AddNewLexues(string emri, string mbiemri, string uname, string pword)
         {
             // Create connection with DB using connection string, get connection string with helper class

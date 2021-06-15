@@ -62,7 +62,7 @@ namespace Bibloteka
             this.uname_input.Location = new System.Drawing.Point(166, 111);
             this.uname_input.Name = "uname_input";
             this.uname_input.Size = new System.Drawing.Size(110, 20);
-            this.uname_input.TabIndex = 2;
+            this.uname_input.TabIndex = 1;
             // 
             // Fjalekalimi
             // 
@@ -79,7 +79,7 @@ namespace Bibloteka
             this.pword_input.Location = new System.Drawing.Point(165, 178);
             this.pword_input.Name = "pword_input";
             this.pword_input.Size = new System.Drawing.Size(111, 20);
-            this.pword_input.TabIndex = 4;
+            this.pword_input.TabIndex = 2;
             // 
             // login_button
             // 
@@ -105,6 +105,7 @@ namespace Bibloteka
             this.Controls.Add(this.label1);
             this.Name = "LoginForm";
             this.Text = "LoginForm";
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -98,10 +98,8 @@ namespace Bibloteka
 
         // /////////////////////////////////////////////////////////////////////////////////////////////
         // <!------------ Update LIBRAT, SETS LexuesiID = @lexuesiID and DataDorezimit = data ----------------->
-        public void UpdateLibratLexuesiID_Data (int liberID, int lexuesiID)
+        public void UpdateLibratLexuesiID_Data (int liberID, int lexuesiID, DateTime dataDorezimit)
         {
-            DateTime today = DateTime.Now;
-            DateTime dataDorezimit = today.AddDays(21);
             // Create connection with DB using connection string, get connection string with helper class
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("BIBLOTEKA_DB")))
             {
@@ -125,6 +123,18 @@ namespace Bibloteka
             }
         }
 
+        public void UpdateLexuesRezervuarId(int ID, int rezervuarId)
+        {
+            // Create connection with DB using connection string, get connection string with helper class
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("BIBLOTEKA_DB")))
+            {
+                // Set column LiberGjendjeID = @gjendjeId
+                // Pass Parameters ID, LiberGjendjeID
+                connection.Execute("dbo.SET_LEXUESI_REZERVUAR_ID @ID, @LiberRezervuarId",
+                new { ID = ID, LiberRezervuarID = rezervuarId });
+            }
+        }
+
 
         // //////////////////////////////////////////////////////////////////////////////////////////////
         // <!------------------ Selects LEXUESIT by paramets : @uname ---------------------------------->
@@ -141,6 +151,19 @@ namespace Bibloteka
             }
         }
 
+
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!!!!!!!!!!   ---   Gets LEXUESIT by parameters : @liberRezervuarID !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        public List<Lexues> GetLexuesiByRezervuarID(int rezervuarID)
+        {
+            // Create connection with DB using connection string, get connection string with helper class
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("BIBLOTEKA_DB")))
+            {
+                // Get Lexuesit by Parameter rezervuarID
+                return connection.Query<Lexues>("dbo.GET_LEXUESIT_BY_REZERVUARID @RezervuarId",
+                new { RezervuarID = rezervuarID }).ToList();
+            }
+        }
 
         // ///////////////////////////////////////////////////////////////////////////////////////////
         // <!------------------------------- Add new user to LEXUESIT ---------------------------------->

@@ -61,6 +61,9 @@ namespace Bibloteka
             this.label7 = new System.Windows.Forms.Label();
             this.rezervo_groupBox = new System.Windows.Forms.GroupBox();
             this.rezervo_librinBtn = new System.Windows.Forms.Button();
+            this.llogari_gjendje_group = new System.Windows.Forms.GroupBox();
+            this.rezervuar_label = new System.Windows.Forms.Label();
+            this.liber_gjendje_label = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -69,6 +72,7 @@ namespace Bibloteka
             ((System.ComponentModel.ISupportInitialize)(this.nrFaqe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ID_rezervo)).BeginInit();
             this.rezervo_groupBox.SuspendLayout();
+            this.llogari_gjendje_group.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -446,12 +450,46 @@ namespace Bibloteka
             this.rezervo_librinBtn.UseVisualStyleBackColor = false;
             this.rezervo_librinBtn.Click += new System.EventHandler(this.rezervo_librinBtn_Click);
             // 
+            // llogari_gjendje_group
+            // 
+            this.llogari_gjendje_group.Controls.Add(this.liber_gjendje_label);
+            this.llogari_gjendje_group.Controls.Add(this.rezervuar_label);
+            this.llogari_gjendje_group.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llogari_gjendje_group.Location = new System.Drawing.Point(812, 86);
+            this.llogari_gjendje_group.Name = "llogari_gjendje_group";
+            this.llogari_gjendje_group.Size = new System.Drawing.Size(239, 114);
+            this.llogari_gjendje_group.TabIndex = 15;
+            this.llogari_gjendje_group.TabStop = false;
+            this.llogari_gjendje_group.Text = "Gjendja e llogarise";
+            this.llogari_gjendje_group.Visible = false;
+            // 
+            // rezervuar_label
+            // 
+            this.rezervuar_label.AutoSize = true;
+            this.rezervuar_label.ForeColor = System.Drawing.Color.Navy;
+            this.rezervuar_label.Location = new System.Drawing.Point(10, 24);
+            this.rezervuar_label.Name = "rezervuar_label";
+            this.rezervuar_label.Size = new System.Drawing.Size(139, 16);
+            this.rezervuar_label.TabIndex = 0;
+            this.rezervuar_label.Text = "Rezervuar: Asnje liber";
+            // 
+            // liber_gjendje_label
+            // 
+            this.liber_gjendje_label.AutoSize = true;
+            this.liber_gjendje_label.ForeColor = System.Drawing.Color.Black;
+            this.liber_gjendje_label.Location = new System.Drawing.Point(10, 70);
+            this.liber_gjendje_label.Name = "liber_gjendje_label";
+            this.liber_gjendje_label.Size = new System.Drawing.Size(182, 16);
+            this.liber_gjendje_label.TabIndex = 1;
+            this.liber_gjendje_label.Text = "Ne pronesine tuaj: Asnje liber";
+            // 
             // Bibloteka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkCyan;
             this.ClientSize = new System.Drawing.Size(1063, 634);
+            this.Controls.Add(this.llogari_gjendje_group);
             this.Controls.Add(this.rezervo_groupBox);
             this.Controls.Add(this.lista_group);
             this.Controls.Add(this.btnAdd);
@@ -473,6 +511,8 @@ namespace Bibloteka
             ((System.ComponentModel.ISupportInitialize)(this.ID_rezervo)).EndInit();
             this.rezervo_groupBox.ResumeLayout(false);
             this.rezervo_groupBox.PerformLayout();
+            this.llogari_gjendje_group.ResumeLayout(false);
+            this.llogari_gjendje_group.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -510,6 +550,9 @@ namespace Bibloteka
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox rezervo_groupBox;
         private System.Windows.Forms.Button rezervo_librinBtn;
+        private System.Windows.Forms.GroupBox llogari_gjendje_group;
+        private System.Windows.Forms.Label liber_gjendje_label;
+        private System.Windows.Forms.Label rezervuar_label;
     }
 }
 

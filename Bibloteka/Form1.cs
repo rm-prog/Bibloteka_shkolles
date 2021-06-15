@@ -19,7 +19,10 @@ namespace Bibloteka
         {
             InitializeComponent();
         }
-    
+
+
+        //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!!!!!!!!!!!! ----    Button that Opens Register Form --------- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public void btnRegister_Click(object Sender, EventArgs eventArgs)
         {
             // Open RegisterForm to register new user
@@ -37,6 +40,11 @@ namespace Bibloteka
             }
         }
 
+
+
+
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!!!!!!!!!!!! ------   Button that allows user to look for different books --- !!!!!!!!!!!!!!!!!!
         public void btnSearch_Click(object Sender, EventArgs eventArgs)
         {
             DataAccess db = new DataAccess();
@@ -60,6 +68,11 @@ namespace Bibloteka
 
         }
 
+
+
+
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // !!!!!!!!! --- Button that allows user to search books according to his preferences ------------ !!!!!!!!!!!!!!!!!!!!
         private void adv_search_button_Click_1(object sender, EventArgs e)
         {
             DataAccess db = new DataAccess();
@@ -98,6 +111,10 @@ namespace Bibloteka
             hello_label.Text = $"Pershendetje {Perdoruesi.FirstName}!";
         }
 
+
+
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // !!!!!!! --- Button that opens table with libra from library and allows user to book a book --------- !!!!!!!!!!!!!!!!!
         private void btnReserve_Click(object sender, EventArgs e)
         {
             // Check if the user is logged in
@@ -132,6 +149,12 @@ namespace Bibloteka
 
         }
 
+
+
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!!!!!!!! ---  Button that opens Login Form ------------ !!!!!!!!!!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!!!!!!!!!!! ------     Logs user in ---------------     !!!!!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!!!!!! ---------------   Also displays info about the user on screen   ---------------  !!!!!!!!
         private void btnLogin_Click(object sender, EventArgs e)
         {
             LoginForm loginForm = new LoginForm();
@@ -146,6 +169,12 @@ namespace Bibloteka
                 btnLogin.Visible = false;
                 btnRegister.Enabled = false;
                 btnRegister.Visible = false;
+
+                // Display info about user on screen
+                llogari_gjendje_group.Visible = true;
+
+                Helper.UpdateUserInfoOnScreen(rezervuar_label, liber_gjendje_label);
+
             }
         }
 
@@ -154,6 +183,9 @@ namespace Bibloteka
 
         }
 
+
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!!!!!!!!!!!!!! -----   Button that lets the user book the book if possible --------- !!!!!!!!!!!!!!!!!11
         private void rezervo_librinBtn_Click(object sender, EventArgs e)
         {
             DataAccess db = new DataAccess();
@@ -175,12 +207,17 @@ namespace Bibloteka
                 // Set the due date of the book ( In table LIBRAT Column Data_dorezimit )
                 // Change users data in Perdoruesi Static Class
 
+                DateTime today = DateTime.Now;
+                DateTime dataDorezimit = today.AddDays(21);
+
                 db.UpdateLexuesGjendjeId(Perdoruesi.ID, liberID);
-                db.UpdateLibratLexuesiID_Data(liberID, Perdoruesi.ID);
+                db.UpdateLibratLexuesiID_Data(liberID, Perdoruesi.ID, dataDorezimit);
 
-                Perdoruesi.LiberGjendjeID = librat[0].ID;
+                Perdoruesi.LiberGjendjeID = liberID;
 
-                MessageBox.Show("Duhet te dorezoni librin mbas 21 ditesh");
+                MessageBox.Show($"Duhet te dorezoni librin me : '{dataDorezimit.ToShortDateString()}'");
+
+
             } 
             else
             {
@@ -190,7 +227,22 @@ namespace Bibloteka
                 // Change users data
                 // Set the ID of the book reserved ( Column LiberRezervuarID )
                 // Change users data in Perdoruesi Static Class
-                throw new NotImplementedException();
+
+                List<Lexues> lexues = db.GetLexuesiByRezervuarID(liberID);
+                if (lexues.Count > 1)
+                {
+                    MessageBox.Show("Nuk mund te rezervoni kete liber. Dikush tjeter e ka rezervuar para jush");
+                } 
+                else
+                {
+                    db.UpdateLexuesRezervuarId(Perdoruesi.ID, liberID);
+
+                    Perdoruesi.LiberRezervuarID = liberID;
+
+                    MessageBox.Show($"Ju sapo rezervuat librin '{librat[0].Titulli}'\n Terhiqeni me: {librat[0].Data_dorezimit.ToShortDateString()}");
+
+                    Helper.UpdateUserInfoOnScreen(rezervuar_label, liber_gjendje_label);
+                }
             }
         }
     }

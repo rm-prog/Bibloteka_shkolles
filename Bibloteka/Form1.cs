@@ -155,26 +155,54 @@ namespace Bibloteka
         // !!!!!!!!!!!!!!!!! ---  Button that opens Login Form ------------ !!!!!!!!!!!!!!!!!!!!!!!!!!
         // !!!!!!!!!!!!!!!!!!!! ------     Logs user in ---------------     !!!!!!!!!!!!!!!!!!!!!
         // !!!!!!!!!!!!!!! ---------------   Also displays info about the user on screen   ---------------  !!!!!!!!
+        // !!!!!!!!! ------         Logs out if user is logged in -------------------- !!!!!!!!!!
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            LoginForm loginForm = new LoginForm();
-
-            loginForm.ShowDialog();
-
-            // If login is successful
-            if (loginForm.DialogResult == DialogResult.OK)
+            // Login Process
+            if (!Perdoruesi.LoggedIn)
             {
-                hello_label.Text = $"Pershendetje {Perdoruesi.FirstName} !";
-                btnLogin.Enabled = false;
-                btnLogin.Visible = false;
-                btnRegister.Enabled = false;
-                btnRegister.Visible = false;
+                LoginForm loginForm = new LoginForm();
 
-                // Display info about user on screen
-                llogari_gjendje_group.Visible = true;
+                loginForm.ShowDialog();
 
+                // If login is successful
+                if (loginForm.DialogResult == DialogResult.OK)
+                {
+                    hello_label.Text = $"Pershendetje {Perdoruesi.FirstName} !";
+                    btnRegister.Enabled = false;
+                    btnRegister.Visible = false;
+
+                    // Display info about user on screen
+                    llogari_gjendje_group.Visible = true;
+
+                    Helper.UpdateUserInfoOnScreen(rezervuar_label, liber_gjendje_label);
+                    btnLogin.Text = "Shkyçu";
+                }
+            } 
+            // Logout process
+            else
+            {
                 Helper.UpdateUserInfoOnScreen(rezervuar_label, liber_gjendje_label);
+                hello_label.Text = "Pershendetje!";
 
+                llogari_gjendje_group.Visible = false;
+
+                btnLogin.Text = "Kyçu";
+                btnRegister.Enabled = true;
+                btnRegister.Visible = true;
+
+                lista_group.Visible = false;
+                rezervo_groupBox.Visible = false;
+
+                Perdoruesi.ID = 20000;
+                Perdoruesi.FirstName = "";
+                Perdoruesi.LastName = "";
+                Perdoruesi.Uname = "";
+                Perdoruesi.LoggedIn = false;
+                Perdoruesi.LiberRezervuarID = 20000;
+                Perdoruesi.LiberGjendjeID = 20000;
+
+                MessageBox.Show("Sapo u shkyçet nga llogaria juaj");
             }
         }
 
@@ -215,9 +243,9 @@ namespace Bibloteka
 
                 Perdoruesi.LiberGjendjeID = liberID;
 
-                MessageBox.Show($"Duhet te dorezoni librin me : '{dataDorezimit.ToShortDateString()}'");
+                MessageBox.Show($"Ju sapo terhoqet librin '{librat[0].Titulli}'\nDorezojeni me: '{dataDorezimit.ToShortDateString()}'");
 
-
+                Helper.UpdateUserInfoOnScreen(rezervuar_label, liber_gjendje_label);
             } 
             else
             {
@@ -229,7 +257,7 @@ namespace Bibloteka
                 // Change users data in Perdoruesi Static Class
 
                 List<Lexues> lexues = db.GetLexuesiByRezervuarID(liberID);
-                if (lexues.Count > 1)
+                if (lexues.Count > 0)
                 {
                     MessageBox.Show("Nuk mund te rezervoni kete liber. Dikush tjeter e ka rezervuar para jush");
                 } 

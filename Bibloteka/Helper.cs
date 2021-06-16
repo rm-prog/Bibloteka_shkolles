@@ -70,6 +70,8 @@ namespace Bibloteka
                 {
                     rezervuar_label.Text = $"Rezervuar: {librat[0].Titulli}\n Data e terheqjes: {librat[0].Data_dorezimit.ToShortDateString()}";
                 }
+
+                liber_gjendje_label.Text = "Ne pronesine tuaj: Asnje liber";
             }
 
             // Check if user has a book
@@ -93,6 +95,12 @@ namespace Bibloteka
                 {
                     liber_gjendje_label.Text = $"Ne pronesine tuaj: {librat[0].Titulli} \n Data e dorezimit: {librat[0].Data_dorezimit.ToShortDateString()}";
                 }
+            }
+
+            if (Perdoruesi.LiberGjendjeID == 20000 && Perdoruesi.LiberRezervuarID == 20000)
+            {
+                rezervuar_label.Text = "Rezervuar: Asnje liber";
+                liber_gjendje_label.Text = "Ne pronesine tuaj: Asnje liber";
             }
         }
 

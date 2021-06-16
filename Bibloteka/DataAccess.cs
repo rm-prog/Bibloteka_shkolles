@@ -21,6 +21,32 @@ namespace Bibloteka
         }
 
 
+        /////////////////////////////////////////////////////////////////////////////////////
+        // Get all unique values from Autori COLUMN in LIBRAT table     //////////////////////
+        public List<Liber> GetLibraUniqueAutor()
+        {
+            // Create connection with DB using connection string, get connection string with helper class
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("BIBLOTEKA_DB")))
+            {
+                // Get RECORDS from LIBRAT table with UNIQUE Autor values
+                return connection.Query<Liber>("SELECT DISTINCT Autori FROM dbo.LIBRAT").ToList();
+            }
+        }
+
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        // Get all unique values from Zhaneri COLUMN in LIBRAT table     //////////////////////
+        public List<Liber> GetLibraUniqueZhaner()
+        {
+            // Create connection with DB using connection string, get connection string with helper class
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("BIBLOTEKA_DB")))
+            {
+                // Get RECORDS from LIBRAT table with UNIQUE Zhaneri values
+                return connection.Query<Liber>("SELECT DISTINCT Zhaneri FROM dbo.LIBRAT").ToList();
+            }
+        }
+
+
         // /////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // <!------------------------   Selects LIBRAT by parameters : @autori, @faqe, @zhaneri -----------------------!>
         public List<Liber> GetLibraByAutoriFaqeZhaneri(string autori, int faqe, string zhaneri)
@@ -108,6 +134,21 @@ namespace Bibloteka
             }
         }
 
+
+        // /////////////////////////////////////////////////////////////////////////////////////////////
+        // !!!!!!! --------------  Adds new Liber into dbo.LIBRAT  --------------- !!!!!!!!!!!!!!!!!!!
+        // !!!!!!!!!!!!!!!! -------     Parameters : titulli, autori, faqe, zhaneri   ------- !!!!!!!
+        public void AddNewLiber (string titulli, string autori, int faqe, string zhaneri)
+        {
+            // Create connection with DB using connection string, get connection string with helper class
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("BIBLOTEKA_DB")))
+            {
+                // INSERT INTO table LIBRAT   ---   @Titulli, @Autori, @Faqe, @Zhaneri
+                // Pass Parameters ----  titulli, autori, faqe, zhaneri
+                connection.Execute("dbo.ADD_NEW_LIBER @Titulli, @Autori, @Faqe, @Zhaneri", 
+                new { Titulli = titulli, Autori = autori, Faqe = faqe, Zhaneri = zhaneri});
+            }
+        }
 
         // /////////////////////////////////////////////////////////////////////////////////////////////
         // <!-------------------- Updates LEXUESIT, SETS LiberGjendjeId = @gjendjeID ------------------------------->

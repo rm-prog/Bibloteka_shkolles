@@ -109,6 +109,14 @@ namespace Bibloteka
         private void Bibloteka_Load(object sender, EventArgs e)
         {
             hello_label.Text = $"Pershendetje {Perdoruesi.FirstName}!";
+
+            DataAccess db = new DataAccess();
+
+            librat = db.GetLibraUniqueAutor();
+            Helper.FillComboBox(autori_input, librat, "autori");
+
+            librat = db.GetLibraUniqueZhaner();
+            Helper.FillComboBox(zhaneri_input, librat, "zhaneri");
         }
 
 
@@ -271,6 +279,20 @@ namespace Bibloteka
 
                     Helper.UpdateUserInfoOnScreen(rezervuar_label, liber_gjendje_label);
                 }
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (Perdoruesi.Uname == "admin")
+            {
+                AddBookForm addBookForm = new AddBookForm();
+
+                addBookForm.ShowDialog();
+            } 
+            else
+            {
+                MessageBox.Show("Nuk keni te drejte te shtoni libra");
             }
         }
     }

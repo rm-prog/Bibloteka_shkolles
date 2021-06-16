@@ -62,8 +62,8 @@ namespace Bibloteka
             this.rezervo_groupBox = new System.Windows.Forms.GroupBox();
             this.rezervo_librinBtn = new System.Windows.Forms.Button();
             this.llogari_gjendje_group = new System.Windows.Forms.GroupBox();
-            this.rezervuar_label = new System.Windows.Forms.Label();
             this.liber_gjendje_label = new System.Windows.Forms.Label();
+            this.rezervuar_label = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -212,6 +212,7 @@ namespace Bibloteka
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Shto Liber";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // librat_grid
             // 
@@ -312,12 +313,7 @@ namespace Bibloteka
             // 
             this.zhaneri_input.FormattingEnabled = true;
             this.zhaneri_input.Items.AddRange(new object[] {
-            "Te Gjithe",
-            "Parodi",
-            "Fantazi",
-            "Poezi",
-            "Realizem",
-            "Tragjedi"});
+            "Te Gjithe"});
             this.zhaneri_input.Location = new System.Drawing.Point(501, 16);
             this.zhaneri_input.Name = "zhaneri_input";
             this.zhaneri_input.Size = new System.Drawing.Size(123, 26);
@@ -367,14 +363,7 @@ namespace Bibloteka
             // 
             this.autori_input.FormattingEnabled = true;
             this.autori_input.Items.AddRange(new object[] {
-            "Te Gjithe",
-            "Gustav Flobert",
-            "J.K. Rowling",
-            "Leon Tolstoi",
-            "Jeronim de Rada",
-            "Gjergj Fishta",
-            "Migel Servantes",
-            "Volfgang Gete"});
+            "Te Gjithe"});
             this.autori_input.Location = new System.Drawing.Point(112, 17);
             this.autori_input.Name = "autori_input";
             this.autori_input.Size = new System.Drawing.Size(121, 26);
@@ -463,16 +452,6 @@ namespace Bibloteka
             this.llogari_gjendje_group.Text = "Gjendja e llogarise";
             this.llogari_gjendje_group.Visible = false;
             // 
-            // rezervuar_label
-            // 
-            this.rezervuar_label.AutoSize = true;
-            this.rezervuar_label.ForeColor = System.Drawing.Color.Navy;
-            this.rezervuar_label.Location = new System.Drawing.Point(10, 24);
-            this.rezervuar_label.Name = "rezervuar_label";
-            this.rezervuar_label.Size = new System.Drawing.Size(139, 16);
-            this.rezervuar_label.TabIndex = 0;
-            this.rezervuar_label.Text = "Rezervuar: Asnje liber";
-            // 
             // liber_gjendje_label
             // 
             this.liber_gjendje_label.AutoSize = true;
@@ -482,6 +461,16 @@ namespace Bibloteka
             this.liber_gjendje_label.Size = new System.Drawing.Size(182, 16);
             this.liber_gjendje_label.TabIndex = 1;
             this.liber_gjendje_label.Text = "Ne pronesine tuaj: Asnje liber";
+            // 
+            // rezervuar_label
+            // 
+            this.rezervuar_label.AutoSize = true;
+            this.rezervuar_label.ForeColor = System.Drawing.Color.Navy;
+            this.rezervuar_label.Location = new System.Drawing.Point(10, 24);
+            this.rezervuar_label.Name = "rezervuar_label";
+            this.rezervuar_label.Size = new System.Drawing.Size(139, 16);
+            this.rezervuar_label.TabIndex = 0;
+            this.rezervuar_label.Text = "Rezervuar: Asnje liber";
             // 
             // Bibloteka
             // 

@@ -104,5 +104,30 @@ namespace Bibloteka
             }
         }
 
+
+        public static void FillComboBox (ComboBox comboBox, List<Liber> librat, string action) 
+        {
+            int libratLength = librat.Count;
+
+            if (action == "autori")
+            {
+                for (int i=0; i<libratLength; i++)
+                {
+                    comboBox.Items.Add(librat[i].Autori);
+                }
+            } 
+            else if (action == "zhaneri")
+            {
+                for (int i=0; i<libratLength; i++)
+                {
+                    comboBox.Items.Add(librat[i].Zhaneri);
+                }
+            } 
+            else
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
     }
 }

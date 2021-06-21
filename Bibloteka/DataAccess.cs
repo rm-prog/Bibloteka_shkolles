@@ -46,48 +46,55 @@ namespace Bibloteka
             }
         }
 
+        // !!!!!!!!!!!!!!!!!!!!!  Test_Adv_Search -----   Get Methods need changes  !!!!!!!!!!!!!!!!!!!!!!!
+        // ///////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////
+
 
         // /////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // <!------------------------   Selects LIBRAT by parameters : @autori, @faqe, @zhaneri -----------------------!>
-        public List<Liber> GetLibraByAutoriFaqeZhaneri(string autori, int faqe, string zhaneri)
+        public List<Liber> GetLibraByAutoriFaqeZhaneri(string[] autori, int faqe, string[] zhaneri)
         {
             // Create connection with DB using connection string, get connection string with helper class
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("BIBLOTEKA_DB")))
             {
                 // Use stored procedure to get records with particular Autor, Number of Faqe and Zhaner
                 // Pass The Parameters autori, faqe, zhaneri
-                return connection.Query<Liber>("dbo.GET_LIBRAT_BY_AUTORI_FAQE_ZHANERI @Autori, @Faqe, @Zhaneri",
-                new { Autori = autori, Faqe = faqe, Zhaneri = zhaneri }).ToList();
+                return connection.Query<Liber>(
+                    $"SELECT * FROM dbo.LIBRAT WHERE Autori IN @autori AND Faqe < {faqe} AND Zhaneri IN @zhaneri",
+                    new { autori, zhaneri }).ToList();
             }
         }
 
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // <!--------------------    Selects LIBRAT by parameters : @autori, @faqe  --------------------------!>
-        public List<Liber> GetLibraByAutoriFaqe(string autori, int faqe)
+        public List<Liber> GetLibraByAutoriFaqe(string[] autori, int faqe)
         {
             // Create connection with DB using connection string, get connection string with helper class
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("BIBLOTEKA_DB")))
             {
                 // Use stored procedure to get records with particular Autor, Number of Faqe
                 // Pass The Parameters autori, faqe
-                return connection.Query<Liber>("dbo.GET_LIBRAT_BY_AUTORI_FAQE @Autori, @Faqe",
-                new { Autori = autori, Faqe = faqe }).ToList();
+                return connection.Query<Liber>(
+                    $"SELECT * FROM dbo.LIBRAT WHERE Autori IN @autori AND Faqe < {faqe}",
+                    new { autori }).ToList();
             }
         }
 
 
         // ////////////////////////////////////////////////////////////////////////////////////////////////
         // <!------------------- Selects LIBRAT by parameters : @faqe, @zhaneri -------------------------->
-        public List<Liber> GetLibraByFaqeZhaneri(int faqe, string zhaneri)
+        public List<Liber> GetLibraByFaqeZhaneri(int faqe, string[] zhaneri)
         {
             // Create connection with DB using connection string, get connection string with helper class
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(Helper.CnnVal("BIBLOTEKA_DB")))
             {
                 // Use stored procedure to get records with particular Number of Faqe and Zhaneri
                 // Pass The Parameters faqe, zhaneri
-                return connection.Query<Liber>("dbo.GET_LIBRAT_BY_FAQE_ZHANERI @Faqe, @Zhaneri",
-                new { Faqe = faqe, Zhaneri = zhaneri }).ToList();
+                return connection.Query<Liber>(
+                    $"SELECT * FROM dbo.LIBRAT WHERE Faqe < {faqe} AND Zhaneri IN @zhaneri",
+                    new { zhaneri }).ToList();
             }
         }
 

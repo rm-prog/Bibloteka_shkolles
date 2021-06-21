@@ -51,11 +51,9 @@ namespace Bibloteka
             this.Data_dorezimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lista_group = new System.Windows.Forms.GroupBox();
             this.adv_search_button = new System.Windows.Forms.Button();
-            this.zhaneri_input = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.nrFaqe = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.autori_input = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.ID_rezervo = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
@@ -64,6 +62,8 @@ namespace Bibloteka
             this.llogari_gjendje_group = new System.Windows.Forms.GroupBox();
             this.liber_gjendje_label = new System.Windows.Forms.Label();
             this.rezervuar_label = new System.Windows.Forms.Label();
+            this.autori_input = new System.Windows.Forms.CheckedListBox();
+            this.zhaneri_input = new System.Windows.Forms.CheckedListBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -282,12 +282,12 @@ namespace Bibloteka
             // 
             // lista_group
             // 
-            this.lista_group.Controls.Add(this.adv_search_button);
             this.lista_group.Controls.Add(this.zhaneri_input);
+            this.lista_group.Controls.Add(this.autori_input);
+            this.lista_group.Controls.Add(this.adv_search_button);
             this.lista_group.Controls.Add(this.label6);
             this.lista_group.Controls.Add(this.nrFaqe);
             this.lista_group.Controls.Add(this.label5);
-            this.lista_group.Controls.Add(this.autori_input);
             this.lista_group.Controls.Add(this.label4);
             this.lista_group.Controls.Add(this.librat_grid);
             this.lista_group.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -309,20 +309,10 @@ namespace Bibloteka
             this.adv_search_button.TabIndex = 0;
             this.adv_search_button.Click += new System.EventHandler(this.adv_search_button_Click_1);
             // 
-            // zhaneri_input
-            // 
-            this.zhaneri_input.FormattingEnabled = true;
-            this.zhaneri_input.Items.AddRange(new object[] {
-            "Te Gjithe"});
-            this.zhaneri_input.Location = new System.Drawing.Point(501, 16);
-            this.zhaneri_input.Name = "zhaneri_input";
-            this.zhaneri_input.Size = new System.Drawing.Size(123, 26);
-            this.zhaneri_input.TabIndex = 11;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(435, 20);
+            this.label6.Location = new System.Drawing.Point(447, 20);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(57, 18);
             this.label6.TabIndex = 10;
@@ -330,7 +320,7 @@ namespace Bibloteka
             // 
             // nrFaqe
             // 
-            this.nrFaqe.Location = new System.Drawing.Point(313, 17);
+            this.nrFaqe.Location = new System.Drawing.Point(332, 17);
             this.nrFaqe.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -353,21 +343,11 @@ namespace Bibloteka
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(239, 18);
+            this.label5.Location = new System.Drawing.Point(268, 19);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(54, 18);
             this.label5.TabIndex = 8;
             this.label5.Text = "Faqe <";
-            // 
-            // autori_input
-            // 
-            this.autori_input.FormattingEnabled = true;
-            this.autori_input.Items.AddRange(new object[] {
-            "Te Gjithe"});
-            this.autori_input.Location = new System.Drawing.Point(112, 17);
-            this.autori_input.Name = "autori_input";
-            this.autori_input.Size = new System.Drawing.Size(121, 26);
-            this.autori_input.TabIndex = 7;
             // 
             // label4
             // 
@@ -472,6 +452,29 @@ namespace Bibloteka
             this.rezervuar_label.TabIndex = 0;
             this.rezervuar_label.Text = "Rezervuar: Asnje liber";
             // 
+            // autori_input
+            // 
+            this.autori_input.AllowDrop = true;
+            this.autori_input.FormattingEnabled = true;
+            this.autori_input.Location = new System.Drawing.Point(110, 19);
+            this.autori_input.Name = "autori_input";
+            this.autori_input.Size = new System.Drawing.Size(152, 23);
+            this.autori_input.TabIndex = 12;
+            this.autori_input.Enter += new System.EventHandler(this.autori_input_Enter);
+            this.autori_input.Leave += new System.EventHandler(this.autori_input_Leave);
+            this.autori_input.MouseLeave += new System.EventHandler(this.autori_input_MouseLeave);
+            this.autori_input.MouseHover += new System.EventHandler(this.autori_input_MouseHover);
+            // 
+            // zhaneri_input
+            // 
+            this.zhaneri_input.FormattingEnabled = true;
+            this.zhaneri_input.Location = new System.Drawing.Point(510, 17);
+            this.zhaneri_input.Name = "zhaneri_input";
+            this.zhaneri_input.Size = new System.Drawing.Size(126, 23);
+            this.zhaneri_input.TabIndex = 13;
+            this.zhaneri_input.MouseLeave += new System.EventHandler(this.zhaneri_input_MouseLeave);
+            this.zhaneri_input.MouseHover += new System.EventHandler(this.zhaneri_input_MouseHover);
+            // 
             // Bibloteka
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -521,10 +524,8 @@ namespace Bibloteka
         private System.Windows.Forms.DataGridView librat_grid;
         private System.Windows.Forms.GroupBox lista_group;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox autori_input;
         private System.Windows.Forms.NumericUpDown nrFaqe;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox zhaneri_input;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button adv_search_button;
         private System.Windows.Forms.Label hello_label;
@@ -542,6 +543,8 @@ namespace Bibloteka
         private System.Windows.Forms.GroupBox llogari_gjendje_group;
         private System.Windows.Forms.Label liber_gjendje_label;
         private System.Windows.Forms.Label rezervuar_label;
+        private System.Windows.Forms.CheckedListBox autori_input;
+        private System.Windows.Forms.CheckedListBox zhaneri_input;
     }
 }
 

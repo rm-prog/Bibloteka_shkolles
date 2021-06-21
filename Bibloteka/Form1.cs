@@ -70,7 +70,7 @@ namespace Bibloteka
 
 
 
-
+        // !!!!!!!!!!!!!!!!!     Test_Adv_Search ---- Needs to be changed   !!!!!!!!!!!!!!!!!!!!!!!
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // !!!!!!!!! --- Button that allows user to search books according to his preferences ------------ !!!!!!!!!!!!!!!!!!!!
         private void adv_search_button_Click_1(object sender, EventArgs e)
@@ -79,12 +79,16 @@ namespace Bibloteka
 
             librat_grid.Rows.Clear();
 
-            string autori = autori_input.Text; // Get which author has the user choosed
-            int faqe = Convert.ToInt32(nrFaqe.Value); // How many pages maximum
-            string zhaneri = zhaneri_input.Text; // The Zhaner the user has choosed
+            string[] autori = new string[autori_input.CheckedItems.Count];
+            autori_input.CheckedItems.CopyTo(autori, 0); // Get which authors has the user choosed
 
-            bool getByAutori = autori != "" && autori != "Te Gjithe" ? true : false; // Check if user has chosen any specific author
-            bool getByZhaneri = zhaneri != "" && zhaneri != "Te Gjithe" ? true : false; // Check if user has chosen any specific zhaner
+            int faqe = Convert.ToInt32(nrFaqe.Value); // How many pages maximum
+
+            string[] zhaneri = new string[zhaneri_input.CheckedItems.Count];
+            zhaneri_input.CheckedItems.CopyTo(zhaneri, 0); // The Zhaners the user has choosed
+
+            bool getByAutori = autori.Length > 0 ? true : false; // Check if user has chosen any specific author
+            bool getByZhaneri = zhaneri.Length > 0 ? true : false; // Check if user has chosen any specific zhaner
 
             if (getByAutori && getByZhaneri)
             {
@@ -113,10 +117,10 @@ namespace Bibloteka
             DataAccess db = new DataAccess();
 
             librat = db.GetLibraUniqueAutor();
-            Helper.FillComboBox(autori_input, librat, "autori");
+            Helper.FillCheckedListBox(autori_input, librat, "autori");
 
             librat = db.GetLibraUniqueZhaner();
-            Helper.FillComboBox(zhaneri_input, librat, "zhaneri");
+            Helper.FillCheckedListBox(zhaneri_input, librat, "zhaneri");
         }
 
 
@@ -294,6 +298,36 @@ namespace Bibloteka
             {
                 MessageBox.Show("Nuk keni te drejte te shtoni libra");
             }
+        }
+
+        private void autori_input_Enter(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void autori_input_Leave(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void autori_input_MouseHover(object sender, EventArgs e)
+        {
+            autori_input.Height = 230;
+        }
+
+        private void autori_input_MouseLeave(object sender, EventArgs e)
+        {
+            autori_input.Height = 23;
+        }
+
+        private void zhaneri_input_MouseHover(object sender, EventArgs e)
+        {
+            zhaneri_input.Height = 230;
+        }
+
+        private void zhaneri_input_MouseLeave(object sender, EventArgs e)
+        {
+            zhaneri_input.Height = 23;
         }
     }
 }

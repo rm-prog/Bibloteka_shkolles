@@ -129,5 +129,25 @@ namespace Bibloteka
             }
         }
 
+        public static void FillCheckedListBox (CheckedListBox checkedListBox, List<Liber> librat, string action)
+        {
+            int libratLength = librat.Count;
+
+            if (action == "autori")
+            {
+                for (int i = 0; i < libratLength; i++)
+                {
+                    checkedListBox.Items.Add(librat[i].Autori);
+                }
+            }
+            else if (action == "zhaneri")
+            {
+                for (int i = 0; i < libratLength; i++)
+                {
+                    checkedListBox.Items.Add(librat[i].Zhaneri);
+                }
+            }
+        }
+
     }
 }

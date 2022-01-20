@@ -81,8 +81,12 @@ namespace Bibloteka
 
                 librat = db.GetLiberByID(Perdoruesi.LiberGjendjeID);
 
-                // Check if the due date of the book is today
-                if (librat[0].Data_dorezimit.ToShortDateString() == DateTime.Now.ToShortDateString())
+                // Check if today is later or the same day as the due date
+                // If value is >= 0 than today is later or the same as the date
+                int compareDates = DateTime.Compare(DateTime.Now, librat[0].Data_dorezimit);
+
+                // Check if the due date of the book is today or earlier
+                if (compareDates >= 0)
                 {
                     Perdoruesi.LiberGjendjeID = 20000;
 
